@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -28,7 +29,7 @@ public class Empleados {
     public Empleados() {
        
          try {
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost/ejemplo2", "ejemplo", "ejemplo");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost/ejemplo", "ejemplo", "ejemplo");
         } catch (SQLException ex) {
             Logger.getLogger(Departamentos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -39,17 +40,19 @@ public class Empleados {
     public int Create(Empleado emp)throws SQLException {
                    
          int filas;
-        String sql = "INSERT INTO departamentos VALUES ( ?, ?, ? )";
+        String sql = "INSERT INTO departamentos VALUES ( ?, ?, ? , ? , ? , ? , ? , ? )";
         PreparedStatement sentencia;
         
         sentencia=conexion.prepareStatement(sql);
-        sentencia.setInt(1, emp.getDept_no());
+        
          sentencia.setInt(1, emp.getEmp_no());
         sentencia.setString(2, emp.getApellidos());
         sentencia.setString(3, emp.getOficina());
         sentencia.setInt(4, emp.getDir());
-        sentencia.setDouble(5, emp.getSalario());
-        sentencia.setDouble(5, emp.getComision());
+        sentencia.setDate(5, (Date) emp.getFecha_alt());
+        sentencia.setDouble(6, emp.getSalario());
+        sentencia.setDouble(7, emp.getComision());
+        sentencia.setInt(8, emp.getDept_no());
         filas = sentencia.executeUpdate();
         return filas;
        }
@@ -84,7 +87,7 @@ public class Empleados {
 
     public void Delete(int dep_no) throws SQLException {
         
-         String sql="delete from empleados where dept_no =70";     
+         String sql="delete from departamentos where dept_no =70";     
     
         sentencia =conexion.createStatement();
         sentencia.execute(sql);
@@ -94,5 +97,26 @@ public class Empleados {
     }
     public void Close() throws SQLException{
     conexion.close();}
+
+    public void BorrarEmp(int no_emp) throws SQLException {
+        String sql="delete from empleados where emp_no"+no_emp;
+        sentencia=conexion.createStatement();
+        sentencia.execute(sql);
+        ResultSet rs=sentencia.getResultSet();
+        sentencia.close();
+    }
+
+    public Empleado ReadEmp(String apellidos_emp) throws SQLException {
+    Empleado emp=null;
+    
+        String sql="select * from empleados where apellidos = "+apellidos_emp;     
+    
+        sentencia =conexion.createStatement();
+        sentencia.execute(sql);
+        ResultSet rs= sentencia.getResultSet();
+        rs.close();
+    
+    return emp;
+    }
 
 }

@@ -88,4 +88,48 @@ public class Departamentos {
     public void Close() throws SQLException{
     conexion.close();}
 
+    public Departamento ReadNum(int no_dep) throws SQLException {
+        Departamento dep=null;
+        String sql="select * from departamentos where dept_no="+no_dep;
+        sentencia=conexion.createStatement();
+        sentencia.execute(sql);
+        ResultSet rs=sentencia.getResultSet();
+        while(rs.next())
+        {
+            dep=new Departamento(rs.getInt("dept_no"),rs.getString("dnombre"),rs.getString("loc"));
+        }
+        sentencia.close();
+        return dep;
+        
+    }
+    
+    public ArrayList<Departamento>ReadTodos() throws SQLException
+    {
+      Departamento dep=null;
+      ArrayList<Departamento> deps=new ArrayList<>();
+      String sql="Select * from departamentos";
+      sentencia=conexion.createStatement();
+      sentencia.execute(sql);
+      ResultSet rs=sentencia.getResultSet();
+      while(rs.next())
+      {
+          dep=new Departamento(rs.getInt("dept_no"),rs.getString("dnombre"),rs.getString("loc"));
+          deps.add(dep);
+      }
+      rs.close();
+      sentencia.close();
+      return deps;
+    }
+
+    public void BorrarDep(int no_dep) throws SQLException {
+        
+        String sql="Delete from departamentos where dept_no="+no_dep;
+        sentencia=conexion.createStatement();
+        sentencia.execute(sql);
+        ResultSet rs=sentencia.getResultSet();
+        sentencia.close();
+        
+        
+    }
+
 }
