@@ -119,4 +119,21 @@ public class Empleados {
     return emp;
     }
 
+    public ArrayList<Empleado> ReadTodos() throws SQLException {
+       Empleado emp=null;
+      ArrayList<Empleado> bdemp=new ArrayList<>();
+      String sql="Select * from empleados";
+      sentencia=conexion.createStatement();
+      sentencia.execute(sql);
+      ResultSet rs=sentencia.getResultSet();
+      while(rs.next())
+      {
+          emp=new Empleado(rs.getInt("emp_no"),rs.getString("apellidos"),rs.getString("oficina"),rs.getInt("dir"),rs.getDate("fecha-alt"),rs.getDouble("salario"),rs.getDouble("comision"),rs.getInt("dept_no"));
+          bdemp.add(emp);
+      }
+      rs.close();
+      sentencia.close();
+      return bdemp;
+    }
+
 }

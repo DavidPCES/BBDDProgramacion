@@ -76,12 +76,12 @@ public class BBDDProgramacion {
        
          System.out.println("|------------------Eleccion Accion------------------|");
          System.out.println("|| 1.-    >> Listado de Departamentos     <<       ||");//
-         System.out.println("|| 2.-    >> Listado de Empleados         <<       ||");
+         System.out.println("|| 2.-    >> Listado de Empleados         <<       ||");//
          System.out.println("|| 3.-    >> Busqueda de Departamento     <<       ||");
          System.out.println("|| 4.-    >> Busqueda de Empleado         <<       ||");//
          System.out.println("|---------------------------------------------------|");
-         System.out.println("|| 5.-    >> Creacion de Empleado         <<       ||");
-         System.out.println("|| 6.-    >> Creacion de Departamentos    <<       ||");//
+         System.out.println("|| 5.-    >> Creacion de Empleado         <<       ||");//Revisar create insert
+         System.out.println("|| 6.-    >> Creacion de Departamentos    <<       ||");//Revisar create insert
          System.out.println("|---------------------------------------------------|");
          System.out.println("|| 7.-    >> Borrado de Empleados         <<       ||");//
          System.out.println("|| 8.-    >> Borrado de Departamentos     <<       ||");//
@@ -145,14 +145,20 @@ public class BBDDProgramacion {
               if(eleccionv2==2)
               {
          System.out.print("---->Mostrando todos los departamentos: ");
-                ArrayList<Departamento>departamentoAL=new ArrayList<>();
-                departamentoAL=bddep.ReadTodos();
+                ArrayList<Empleado>empleadoAL=new ArrayList<>();
+                empleadoAL=bdemp.ReadTodos();
          System.out.println("");
               }
                
                break;
            case 3:
-               
+    //   System.out.println("|--------------------------------------------------|");
+   //    System.out.println("|| 2.-    >> Mostrar Todos               <<       ||");
+         System.out.println("|--------------------------------------------------|");
+         System.out.println("||        >> Busqueda Departamento       <<     ||");
+         System.out.println("|--------------------------------------------------|"); 
+         System.out.println("---->"); no_dep=sc.nextInt();
+         dep=bddep.ReadDep(no_dep);
                break;
            case 4:
     //   System.out.println("|--------------------------------------------------|");

@@ -65,7 +65,7 @@ public class Departamentos {
     public Departamento Read(int dept_no) throws SQLException {
     Departamento dep=null;
     
-        String sql="select dnombre from departamentos where dept_no = "+dept_no;     
+        String sql="select * from departamentos where dept_no = "+dept_no;     
     
         sentencia =conexion.createStatement();
         sentencia.execute(sql);
@@ -130,6 +130,19 @@ public class Departamentos {
         sentencia.close();
         
         
+    }
+
+    Departamento ReadDep(int no_dep) throws SQLException {
+         Departamento dep=null;
+    
+        String sql="select * from departamentos where dept_no = "+no_dep;     
+    
+        sentencia =conexion.createStatement();
+        sentencia.execute(sql);
+        ResultSet rs= sentencia.getResultSet();
+        rs.close();
+    
+    return dep;
     }
 
 }
