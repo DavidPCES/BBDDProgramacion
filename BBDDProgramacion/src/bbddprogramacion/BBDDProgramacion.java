@@ -54,6 +54,8 @@ public class BBDDProgramacion {
      int eleccion,eleccionv2;
             /*variables departamento*/
                 int no_dep;
+                String loc; 
+                String dnombre;
             /*fin variables departamento*/
             /*variables empleado*/
                 int no_emp;
@@ -76,10 +78,10 @@ public class BBDDProgramacion {
          System.out.println("|| 1.-    >> Listado de Departamentos     <<       ||");//
          System.out.println("|| 2.-    >> Listado de Empleados         <<       ||");
          System.out.println("|| 3.-    >> Busqueda de Departamento     <<       ||");
-         System.out.println("|| 4.-    >> Busqueda de Empleado         <<       ||");
+         System.out.println("|| 4.-    >> Busqueda de Empleado         <<       ||");//
          System.out.println("|---------------------------------------------------|");
          System.out.println("|| 5.-    >> Creacion de Empleado         <<       ||");
-         System.out.println("|| 6.-    >> Creacion de Departamentos    <<       ||");
+         System.out.println("|| 6.-    >> Creacion de Departamentos    <<       ||");//
          System.out.println("|---------------------------------------------------|");
          System.out.println("|| 7.-    >> Borrado de Empleados         <<       ||");//
          System.out.println("|| 8.-    >> Borrado de Departamentos     <<       ||");//
@@ -118,9 +120,39 @@ public class BBDDProgramacion {
          System.out.println("");
               }
                break;
+               
+               
            case 2:
+         System.out.println("|--------------------------------------------------|");     
+         System.out.println("|| 1.-    >> Busqueda Personalizada      <<       ||");
+         System.out.println("|| 2.-    >> Mostrar Todos               <<       ||");
+         System.out.println("|--------------------------------------------------|");
+         System.out.print("---->");eleccionv2=sc.nextInt();
+              if(eleccionv2==1)
+              {
+                  
+         System.out.println("---->Empleado a buscar: ");no_dep=sc.nextInt();
+               dep=bddep.ReadNum(no_dep);/*Metodo para imprimir valores de los datos introducidos*/
+               /*imprimir datos del departamento*/
+         System.out.println("|-------------------------------------------------------------------------------------------------------------------------------------------|");
+         System.out.printf("|%-10s %-20s |%-15s |%-10s |%-10s |%-10s |%-10s |%-10s |%n","Emp_no","Apellidos","Oficina","Dir","Fecha_alt","Salario","Comision","Dept_no","|");
+         System.out.println("|-------------------------------------------------------------------------------------------------------------------------------------------|");
+                  
+         System.out.printf("|%10d |%-20s |%-15s |%-10d |%-10d |%-10d |%-10d |%-10d |%n", emp.getEmp_no(),emp.getApellidos(),emp.getOficina(),emp.getDir(),emp.getFecha_alt(),emp.getSalario(),emp.getComision(),emp.getDept_no());
+         System.out.printf("+------------------------------------------------------+ %n");
+               
+              }
+              if(eleccionv2==2)
+              {
+         System.out.print("---->Mostrando todos los departamentos: ");
+                ArrayList<Departamento>departamentoAL=new ArrayList<>();
+                departamentoAL=bddep.ReadTodos();
+         System.out.println("");
+              }
+               
                break;
            case 3:
+               
                break;
            case 4:
     //   System.out.println("|--------------------------------------------------|");
@@ -133,12 +165,22 @@ public class BBDDProgramacion {
                
                break;
            case 5:
+    //   System.out.println("|--------------------------------------------------|");
+   //    System.out.println("|| 2.-    >> Mostrar Todos               <<       ||");
+         System.out.println("|--------------------------------------------------|");
+         System.out.println("||        >> Creacion de Departamentos   <<       ||");
+         System.out.println("|--------------------------------------------------|");
+         System.out.println("---->Dept_no");no_dep=sc.nextInt(); 
+         System.out.println("---->Dnombre");dnombre=sc.nextLine();
+         System.out.println("---->Loc");loc=sc.nextLine();
+         bddep.Create(dep);
+               
                break;
            case 6:
     //   System.out.println("|--------------------------------------------------|");
    //    System.out.println("|| 2.-    >> Mostrar Todos               <<       ||");
          System.out.println("|--------------------------------------------------|");
-         System.out.println("||        >> Creacion de Departamentos   <<       ||");
+         System.out.println("||        >> Creacion de Empleados       <<       ||");
          System.out.println("|--------------------------------------------------|"); 
          System.out.println("---->Emp_no");no_emp=sc.nextInt(); 
          System.out.println("---->Apellidos");/*String*/apellidos_emp=sc.nextLine();

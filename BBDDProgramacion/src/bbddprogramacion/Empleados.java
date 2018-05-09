@@ -72,17 +72,17 @@ public class Empleados {
         return sql;
     }
 
-    public Departamento Read(int emp_no) throws SQLException {
-    Departamento dep=null;
+    public Empleado Read(int emp_no) throws SQLException {
+    Empleado emp=null;
     
-        String sql="select apellido from empleados where emp_no = "+emp_no;     
+        String sql="select * from empleados where emp_no = "+emp_no;     
     
         sentencia =conexion.createStatement();
         sentencia.execute(sql);
         ResultSet rs= sentencia.getResultSet();
         rs.close();
     
-    return dep;
+    return emp;
     }
 
     public void Delete(int dep_no) throws SQLException {
