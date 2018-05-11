@@ -7,7 +7,6 @@ package bbddprogramacion;
 
 import java.sql.Date;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -88,15 +87,15 @@ public class BBDDProgramacion {
        
          System.out.println("|------------------Eleccion Accion------------------|");
          System.out.println("|| 1.-    >> Listado de Departamentos     <<       ||");//funciona
-         System.out.println("|| 2.-    >> Listado de Empleados         <<       ||");// 2.2 funciona 2.1 no funciona
-         System.out.println("|| 3.-    >> Busqueda de Departamento     <<       ||");//
-         System.out.println("|| 4.-    >> Busqueda de Empleado         <<       ||");//
+         System.out.println("|| 2.-    >> Listado de Empleados         <<       ||");// funciona
+         System.out.println("|| 3.-    >> Busqueda de Departamento     <<       ||");//     /*departamento por nombre buscar*/
+         System.out.println("|| 4.-    >> Busqueda de Empleado         <<       ||");//     /*buscar empleado por nombre*/
          System.out.println("|---------------------------------------------------|");
          System.out.println("|| 5.-    >> Creacion de Departamentos    <<       ||");//funciona
          System.out.println("|| 6.-    >> Creacion de Empleado         <<       ||");//funciona
          System.out.println("|---------------------------------------------------|");
          System.out.println("|| 7.-    >> Borrado de Empleados         <<       ||");//funciona
-         System.out.println("|| 8.-    >> Borrado de Departamentos     <<       ||");//
+         System.out.println("|| 8.-    >> Borrado de Departamentos     <<       ||");//funciona
          System.out.println("|| 0.-    >> Salir                        <<       ||");//
          System.out.println("|***************************************************|");
          System.out.print("----->");eleccion=sc.nextInt(); 
@@ -150,17 +149,29 @@ public class BBDDProgramacion {
          System.out.print("---->");eleccionv2=sc.nextInt();
               if(eleccionv2==1)
               {
-                  
+         /*         
          System.out.print("---->Apellido del empleado a buscar: ");apellidos_emp=sc.next();
              emp=bdemp.ReadEmp(apellidos_emp);/*Metodo para imprimir valores de los datos introducidos*/
-               /*imprimir datos del departamento*/
-         System.out.println("\n|-------------------------------------------------------------------------------------------------------------------------------------------|");
+               /*imprimir datos del departamento
+         System.out.println("\n|-------------------------------------------------------------------------------------------------------------|");
          System.out.printf("|%-10s %-20s |%-15s |%-10s |%-10s |%-10s |%-10s |%-10s |%n","Emp_no","Apellidos","Oficina","Dir","Fecha_alt","Salario","Comision","Dept_no","|");
-         System.out.println("|-------------------------------------------------------------------------------------------------------------------------------------------|");
+         System.out.println("|-------------------------------------------------------------------------------------------------------------|");
                   
          System.out.printf("|%10s %-20s %-15s %-10s %-10s %-10s %-10s %-10s        |%n", emp.getEmp_no(),emp.getApellidos(),emp.getOficina(),emp.getDir(),emp.getFecha_alt(),emp.getSalario(),emp.getComision(),emp.getDept_no());
          System.out.printf("+------------------------------------------------------+ %n");
-               
+       */      
+                  
+         System.out.print("---->Numero del Empleado: ");no_emp=sc.nextInt();
+         emp=bdemp.ReadEmp(no_emp);
+         System.out.println("\n|-------------------------------------------------------------------------------------------------------------|");
+         System.out.printf("|%10s %-20s %-15s %-10s %-15s %-10s %-10s %-10s  |%n","Emp_no","Apellidos","Oficina","Dir","Fecha_alt","Salario","Comision","Dept_no");
+         System.out.println("|-------------------------------------------------------------------------------------------------------------|");
+                  
+         System.out.printf("|%10s %-20s %-15s %-10s %-10s %-10s %-10s %-10s       |%n", emp.getEmp_no(),emp.getApellidos(),emp.getOficina(),emp.getDir(),emp.getFecha_alt(),emp.getSalario(),emp.getComision(),emp.getDept_no());
+         System.out.printf("+-------------------------------------------------------------------------------------------------------------+ %n");
+         
+         
+                  
               }
               if(eleccionv2==2)
               {
@@ -190,16 +201,25 @@ public class BBDDProgramacion {
               }
                
                break;
-           case 3:
+           case 3:/*Busqueda departamento por nombre*/
     //   System.out.println("|--------------------------------------------------|");
    //    System.out.println("|| 2.-    >> Mostrar Todos               <<       ||");
          System.out.println("|--------------------------------------------------|");
-         System.out.println("||        >> Busqueda Departamento       <<     ||");
+         System.out.println("||        >> Busqueda Departamento       <<       ||");
          System.out.println("|--------------------------------------------------|"); 
-         System.out.print("---->"); no_dep=sc.nextInt();
-         dep=bddep.ReadDep(no_dep);
+         System.out.print("---->"); dnombre=sc.next();
+         dep=bddep.ReadDepNombre(dnombre);
+         
+         
+         System.out.println("|--------------------------------------------------|");
+         System.out.printf("|%-10s %-20s %-15s  |%n","Dpto_no","Nom.Dep","Ciudad");
+         System.out.println("|--------------------------------------------------|");
+                  
+         System.out.printf("|%-10s %-20s %-15s   |%n", dep.getDept_no(),dep.getDnombre(),dep.getLoc());
+         System.out.printf("+--------------------------------------------------+ %n");
+         
                break;
-           case 4:
+           case 4:/*busqueda empleado por nombre*/
     //   System.out.println("|--------------------------------------------------|");
    //    System.out.println("|| 2.-    >> Mostrar Todos               <<       ||");
          System.out.println("|--------------------------------------------------|");

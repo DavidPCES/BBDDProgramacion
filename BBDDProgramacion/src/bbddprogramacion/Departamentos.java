@@ -145,4 +145,17 @@ public class Departamentos {
     return dep;
     }
 
+    public Departamento ReadDepNombre(String dnombre) throws SQLException {
+         Departamento dep=new Departamento();
+    
+        String sql="select * from departamentos where dnombre = '"+dnombre+"'";     
+    
+        sentencia =conexion.createStatement();
+        sentencia.execute(sql);
+        ResultSet rs= sentencia.getResultSet();
+        rs.close();
+    
+    return dep;
+    }
+
 }

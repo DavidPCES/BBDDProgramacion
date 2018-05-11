@@ -106,18 +106,7 @@ public class Empleados {
         sentencia.close();
     }
 
-    public Empleado ReadEmp(String apellidos_emp ) throws SQLException {
-    Empleado emp=null;
     
-        String sql="select * from empleados where apellido = '"+apellidos_emp+"'";     
-    
-        sentencia =conexion.createStatement();
-        sentencia.execute(sql);
-        ResultSet rs= sentencia.getResultSet();
-        rs.close();
-    
-    return emp;
-    }
 
     public ArrayList<Empleado> ReadTodos() throws SQLException {
        Empleado emp=null;
@@ -134,6 +123,38 @@ public class Empleados {
       rs.close();
       sentencia.close();
       return bdemp;
+    }
+
+    public Empleado ReadEmp(int no_emp) throws SQLException {
+        
+        /*Departamento dep=null;
+        String sql="select * from departamentos where dept_no="+no_dep;
+        sentencia=conexion.createStatement();
+        sentencia.execute(sql);
+        ResultSet rs=sentencia.getResultSet();
+        while(rs.next())
+        {
+            dep=new Departamento(rs.getInt("dept_no"),rs.getString("dnombre"),rs.getString("loc"));
+        }
+        sentencia.close();
+        return dep;
+        */
+        Empleado emp=null;
+    
+        String sql="Select *from empleados where emp_no= "+no_emp;
+        sentencia=conexion.createStatement();
+        sentencia.execute(sql);
+        ResultSet rs=sentencia.getResultSet();
+        while(rs.next())
+        {
+            emp=new Empleado(rs.getInt("emp_no"),rs.getString("Apellido"),rs.getString("oficio"),rs.getInt("dir"),rs.getDate("fecha_alt"),
+            rs.getDouble("salario"),rs.getDouble("comision"),rs.getInt("dept_no"));
+        }
+        rs.close();
+        sentencia.close();
+        
+        return emp;
+       
     }
 
 }
