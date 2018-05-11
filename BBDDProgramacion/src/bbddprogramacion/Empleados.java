@@ -40,7 +40,7 @@ public class Empleados {
     public int Create(Empleado emp)throws SQLException {
                    
          int filas;
-        String sql = "INSERT INTO departamentos VALUES ( ?, ?, ? , ? , ? , ? , ? , ? )";
+        String sql = "INSERT INTO empleados VALUES ( ?, ?, ? , ? , ? , ? , ? , ? )";
         PreparedStatement sentencia;
         
         sentencia=conexion.prepareStatement(sql);
@@ -61,7 +61,7 @@ public class Empleados {
     
      public String Update(int emp_no,Empleado emp) throws SQLException{
          
-        String sql="UPDATE empleados set loc= 'Madrid' where appellido = 70";
+        String sql="UPDATE empleados set loc= 'Madrid' where apellido = 70";
         
         sentencia =conexion.createStatement();
         sentencia.execute(sql);
@@ -99,17 +99,17 @@ public class Empleados {
     conexion.close();}
 
     public void BorrarEmp(int no_emp) throws SQLException {
-        String sql="delete from empleados where emp_no"+no_emp;
+        String sql="delete from empleados where emp_no="+no_emp;
         sentencia=conexion.createStatement();
         sentencia.execute(sql);
         ResultSet rs=sentencia.getResultSet();
         sentencia.close();
     }
 
-    public Empleado ReadEmp(String apellidos_emp) throws SQLException {
+    public Empleado ReadEmp(String apellidos_emp ) throws SQLException {
     Empleado emp=null;
     
-        String sql="select * from empleados where apellidos = "+apellidos_emp;     
+        String sql="select * from empleados where apellido = '"+apellidos_emp+"'";     
     
         sentencia =conexion.createStatement();
         sentencia.execute(sql);
@@ -128,7 +128,7 @@ public class Empleados {
       ResultSet rs=sentencia.getResultSet();
       while(rs.next())
       {
-          emp=new Empleado(rs.getInt("emp_no"),rs.getString("apellidos"),rs.getString("oficina"),rs.getInt("dir"),rs.getDate("fecha-alt"),rs.getDouble("salario"),rs.getDouble("comision"),rs.getInt("dept_no"));
+          emp=new Empleado(rs.getInt("emp_no"),rs.getString("apellido"),rs.getString("oficio"),rs.getInt("dir"),rs.getDate("fecha_alt"),rs.getDouble("salario"),rs.getDouble("comision"),rs.getInt("dept_no"));
           bdemp.add(emp);
       }
       rs.close();

@@ -132,7 +132,7 @@ public class Departamentos {
         
     }
 
-    Departamento ReadDep(int no_dep) throws SQLException {
+    public Departamento ReadDep(int no_dep) throws SQLException {
          Departamento dep=null;
     
         String sql="select * from departamentos where dept_no = "+no_dep;     
