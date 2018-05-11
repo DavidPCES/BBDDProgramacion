@@ -208,6 +208,7 @@ public class BBDDProgramacion {
          System.out.println("||        >> Busqueda Departamento       <<       ||");
          System.out.println("|--------------------------------------------------|"); 
          System.out.print("---->"); dnombre=sc.next();
+         departamentoAL=bddep.ReadDepNombre(dnombre);
          dep=bddep.ReadDepNombre(dnombre);
          
          
