@@ -20,8 +20,8 @@ public class BBDDProgramacion {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Departamento dep=new Departamento();
-        Departamentos bddep =new Departamentos();
+        Departamento dep=new Departamento();/*Creacion clase Departamento*/
+        Departamentos bddep =new Departamentos();/*Creacion cale Departamentos*/
      /*Creacion DEPARTAMENTO*/   
        /*
         dep.setDept_no(70);
@@ -31,8 +31,8 @@ public class BBDDProgramacion {
      /*CIERRO DEPARTAMENTO*/
      
      
-        Empleado emp=new Empleado();
-        Empleados bdemp =new Empleados();
+        Empleado emp=new Empleado();/*Creacion clase Empleado*/
+        Empleados bdemp =new Empleados();/*Creacion clase Empleados*/
      /*EMPLEADO*/
         /*
         emp.setEmp_no(70);//numero de empleado
@@ -72,13 +72,15 @@ public class BBDDProgramacion {
      {/*
         1.1 funciona
         1.2 funciona
-        2.1 liada 
+        2.1 funciona 
         2.2 funciona
-        3 en blanco
-        4 error sql 
-        5 departamento nulo
-        6 departamento nulo
-         
+        3 funciona
+        4 funciona
+        5 funciona
+        6 funciona
+        7 funciona
+        8 funciona
+                 
       */
          
          System.out.println("\n\n");
@@ -88,8 +90,8 @@ public class BBDDProgramacion {
          System.out.println("|------------------Eleccion Accion------------------|");
          System.out.println("|| 1.-    >> Listado de Departamentos     <<       ||");//funciona
          System.out.println("|| 2.-    >> Listado de Empleados         <<       ||");// funciona
-         System.out.println("|| 3.-    >> Busqueda de Departamento     <<       ||");//     /*departamento por nombre buscar*/
-         System.out.println("|| 4.-    >> Busqueda de Empleado         <<       ||");//     /*buscar empleado por nombre*/
+         System.out.println("|| 3.-    >> Busqueda de Departamento     <<       ||");//funciona
+         System.out.println("|| 4.-    >> Busqueda de Empleado         <<       ||");//funciona     
          System.out.println("|---------------------------------------------------|");
          System.out.println("|| 5.-    >> Creacion de Departamentos    <<       ||");//funciona
          System.out.println("|| 6.-    >> Creacion de Empleado         <<       ||");//funciona
@@ -98,7 +100,7 @@ public class BBDDProgramacion {
          System.out.println("|| 8.-    >> Borrado de Departamentos     <<       ||");//funciona
          System.out.println("|| 0.-    >> Salir                        <<       ||");//
          System.out.println("|***************************************************|");
-         System.out.print("-----> ");eleccion=sc.nextInt(); 
+         System.out.print("-----> ");eleccion=sc.nextInt(); //eleccion de accion
          
        switch(eleccion)
        {
@@ -109,12 +111,12 @@ public class BBDDProgramacion {
          System.out.println("|| 2.-    >> Mostrar Todos               <<       ||");
          System.out.println("|--------------------------------------------------|");
          System.out.print("----> ");eleccionv2=sc.nextInt();
-              if(eleccionv2==1)
-              {
+              if(eleccionv2==1)//1.1 Busqueda Personalizada(por numero de departamento) de departamento
+              {//uso variable no_dep
                   
          System.out.println("----> Departamento a buscar: ");no_dep=sc.nextInt();
                dep=bddep.ReadNum(no_dep);/*Metodo para imprimir valores de los datos introducidos*/
-               /*imprimir datos del departamento*/
+                                        /*imprimir datos del departamento*/
          System.out.println("|--------------------------------------------------|");
          System.out.printf("|%-10s %-20s |%-15s |%n","Dpto_no","Nom.Dep","Ciudad");
          System.out.println("|--------------------------------------------------|");
@@ -123,15 +125,15 @@ public class BBDDProgramacion {
          System.out.printf("+--------------------------------------------------+ %n");
                
               }
-              if(eleccionv2==2)
+              if(eleccionv2==2)//1.2 Mostrar todos los departamentos
               {
          System.out.print("---->Mostrando todos los departamentos: \n");
-                ArrayList<Departamento>departamentoAL=new ArrayList<>();
-                departamentoAL=bddep.ReadTodos();
+                ArrayList<Departamento>departamentoAL=new ArrayList<>();/*Array List para sacar todos los departamentos
+                departamentoAL=bddep.ReadTodos();/*Metodo para sacar departamentos*/
          System.out.println("|-------------------------------------------------|");
          System.out.printf("|%-10s %-20s |%-15s |%n","Dpto_no","Nom.Dep","Ciudad");
          System.out.println("|-------------------------------------------------|");
-            for (int i=0;i<departamentoAL.size();i++)
+            for (int i=0;i<departamentoAL.size();i++)//realiza el bucle en toda la extension de la base de datos para coger todos los departamentos
             {
                 System.out.printf("|%-10s %-20s |%-15s |%n", departamentoAL.get(i).getDept_no(),departamentoAL.get(i).getDnombre(),departamentoAL.get(i).getLoc());
             }
@@ -141,13 +143,13 @@ public class BBDDProgramacion {
                break;
                
                
-           case 2:
+           case 2:/*Listado Empleados*/
          System.out.println("|--------------------------------------------------|");     
          System.out.println("|| 1.-    >> Busqueda Personalizada      <<       ||");
          System.out.println("|| 2.-    >> Mostrar Todos               <<       ||");
          System.out.println("|--------------------------------------------------|");
          System.out.print("----> ");eleccionv2=sc.nextInt();
-              if(eleccionv2==1)
+              if(eleccionv2==1)//2.1 Listado de empleados por numero de empleado
               {
          /*         
          System.out.print("---->Apellido del empleado a buscar: ");apellidos_emp=sc.next();
@@ -201,14 +203,14 @@ public class BBDDProgramacion {
               }
                
                break;
-           case 3:/*Busqueda departamento por nombre*/
+           case 3://Busqueda departamento por nombre
     //   System.out.println("|--------------------------------------------------|");
    //    System.out.println("|| 2.-    >> Mostrar Todos               <<       ||");
          System.out.println("|--------------------------------------------------|");
          System.out.println("||        >> Busqueda Departamento       <<       ||");
          System.out.println("|--------------------------------------------------|"); 
          System.out.print("----> "); dnombre=sc.next();
-        dep=bddep.ReadDepNombre(dnombre);
+        dep=bddep.ReadDepNombre(dnombre);//metodo para buscar y mostrar un departamento localizado segun su nombre
          
          
          System.out.println("|--------------------------------------------------|");
@@ -219,14 +221,14 @@ public class BBDDProgramacion {
          System.out.printf("+--------------------------------------------------+ %n");
          
                break;
-           case 4:/*busqueda empleado por nombre*/
+           case 4://busqueda empleado por nombre
     //   System.out.println("|--------------------------------------------------|");
    //    System.out.println("|| 2.-    >> Mostrar Todos               <<       ||");
          System.out.println("|--------------------------------------------------|");
 /*Cambios desde aqui*/System.out.println("||        >> Busqueda Empleado por nombre<<       ||");
          System.out.println("|--------------------------------------------------|");                
          System.out.printf("----> Apellido del Empleado: "); apellidos_emp=sc.next();
-         emp=bdemp.BusquedaEmpleado(apellidos_emp);
+         emp=bdemp.BusquedaEmpleado(apellidos_emp);//metodo para buscar empleado por su apellido
          System.out.println("\n|-------------------------------------------------------------------------------------------------------------|");  
          System.out.printf("|%-10s %-20s %-15s %-10s %-10s %-10s %-10s %-10s       |%n","Emp_no","Apellidos","Oficio","Dir","Fecha_alt","Salario","Comision","Dept_no");
          System.out.println("|-------------------------------------------------------------------------------------------------------------|");  
@@ -236,7 +238,7 @@ public class BBDDProgramacion {
 
          
                break;
-           case 5:
+           case 5:/*creacion departamento*/
     //   System.out.println("|--------------------------------------------------|");
    //    System.out.println("|| 2.-    >> Mostrar Todos               <<       ||");
          System.out.println("|--------------------------------------------------|");
@@ -248,10 +250,10 @@ public class BBDDProgramacion {
          dep.setDnombre(dnombre);
          System.out.print("----> Loc: ");loc=sc.next();
          dep.setLoc(loc);
-         bddep.Create(dep);
+         bddep.Create(dep);//metodo para crear departamento
                
                break;
-           case 6:
+           case 6:/*creacion departamento*/
     //   System.out.println("|--------------------------------------------------|");
    //    System.out.println("|| 2.-    >> Mostrar Todos               <<       ||");
          System.out.println("|--------------------------------------------------|");
@@ -274,31 +276,31 @@ public class BBDDProgramacion {
          emp.setComision(comision_emp);
          System.out.print("----> Dept_no: ");deptno_emp=sc.nextInt();
          emp.setDept_no(deptno_emp);
-         bdemp.Create(emp);
+         bdemp.Create(emp);//metodo para crear empleado
                break;
-           case 7:
+           case 7:/*eliminacion del empleado*/
     //   System.out.println("|--------------------------------------------------|");
    //    System.out.println("|| 2.-    >> Mostrar Todos               <<       ||");
          System.out.println("|--------------------------------------------------|");
          System.out.println("||        >> Eliminar Empleados          <<       ||");
          System.out.println("|--------------------------------------------------|"); 
          System.out.print("----> Eleccion de empleado a eliminar: ");no_emp=sc.nextInt();
-            bdemp.BorrarEmp(no_emp);
+            bdemp.BorrarEmp(no_emp);//metodo elimiar empleado
                
                break;
-           case 8:
+           case 8:/*eliminacion departamentos*/
    //    System.out.println("|--------------------------------------------------|");
    //    System.out.println("|| 2.-    >> Mostrar Todos               <<       ||");
          System.out.println("|--------------------------------------------------|");
          System.out.println("||        >> Eliminar Departamentos      <<       ||");
          System.out.println("|--------------------------------------------------|");
          System.out.println("----> Eleccion de departamento a eliminar: ");no_dep=sc.nextInt();
-            bddep.BorrarDep(no_dep);/*Metodo para eliminar valores de los datos introducidos*/
+            bddep.BorrarDep(no_dep);/*Metodo para eliminar departamentos*/
 
          
                
                break;
-           case 0:
+           case 0:/*acabar el programa si switch continuar=false*/
                continuar=false;
                break;
             
@@ -330,15 +332,15 @@ public class BBDDProgramacion {
                     
         }
       */  
-     }
-        catch(SQLException ex){
+     }//fin del try
+        catch(SQLException ex){/*catch eror insertar valores*/
             System.out.println("Error al insertar: "+ex.getSQLState() + " "+ ex.getMessage());
         }   finally{
         try{
             bddep.Close();
-           } catch(SQLException ex){
+           } catch(SQLException ex){/*catch error de bbdd cerrada de forma repentina*/
                System.out.println("Error al cerrar BBDD: "+ex.getSQLState()+ " "+ ex.getMessage());
-           }        
+           }    //fin del try    
     }
      /*FIN DEL TRY CATCH*/   
         

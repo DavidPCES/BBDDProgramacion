@@ -19,14 +19,14 @@ import java.util.logging.Logger;
  *
  * @author Sergio
  */
-public class Departamentos {
+public class Departamentos {/*clase departamentos*/
 
     private Connection conexion;
-    private ArrayList<Departamento> departamentos;
+    private ArrayList<Departamento> departamentos;/*coge variables departamento*/
     
     Statement sentencia=null;
 
-    public Departamentos() {
+    public Departamentos() {/*constructor*/
 
         try {
             conexion = DriverManager.getConnection("jdbc:mysql://localhost/ejemplo", "ejemplo", "ejemplo");
@@ -39,7 +39,7 @@ public class Departamentos {
     
 
 
-    public int Create(Departamento dep) throws SQLException {
+    public int Create(Departamento dep) throws SQLException {/*metodo creacion departamento*/
         int filas;
         String sql = "INSERT INTO departamentos VALUES ( ?, ?, ? )";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
@@ -50,19 +50,18 @@ public class Departamentos {
         return filas;
     }
 
-    public String Update(int dep_no, Departamento dep) throws SQLException{
+    public String Update(int dep_no, Departamento dep) throws SQLException{/*metodo de update del ejemplo inicial*/
         String sql="UPDATE departamentos set loc= 'Madrid' where dept_no = 70";
         
         sentencia =conexion.createStatement();
         sentencia.execute(sql);
         ResultSet rs= sentencia.getResultSet();
-      //  rs.close();/*añadir ( ?) cuando este el resto arreglado añadir lineas de codigo del primer ejemplo jdbc*/
-             sentencia.close(); 
+        sentencia.close(); 
         
         return sql;
     }
 
-    public Departamento Read(int dept_no) throws SQLException {
+    public Departamento Read(int dept_no) throws SQLException {/*metodo para mostrar del ejemplo inicial adaptado al codigo, no se usa*/
     Departamento dep=null;
     
         String sql="select * from departamentos where dept_no = "+dept_no;     
@@ -75,7 +74,7 @@ public class Departamentos {
     return dep;
     }
 
-    public void Delete(int dep_no) throws SQLException {
+    public void Delete(int dep_no) throws SQLException {/*metodo de eliminar del ejemplo inicial */
         
          String sql="delete from departamentos where dept_no =70";     
     
@@ -85,10 +84,10 @@ public class Departamentos {
      //   rs.close();
         
     }
-    public void Close() throws SQLException{
+    public void Close() throws SQLException{/*cerrar bbdd*/
     conexion.close();}
 
-    public Departamento ReadNum(int no_dep) throws SQLException {
+    public Departamento ReadNum(int no_dep) throws SQLException {/**metodo para mostrar por pantalla departamento segun numero*/
         Departamento dep=null;
         String sql="select * from departamentos where dept_no="+no_dep;
         sentencia=conexion.createStatement();
@@ -103,7 +102,7 @@ public class Departamentos {
         
     }
     
-    public ArrayList<Departamento>ReadTodos() throws SQLException
+    public ArrayList<Departamento>ReadTodos() throws SQLException/*metodo para mostrar listado de todos los departamentos*/
     {
       Departamento dep=null;
       ArrayList<Departamento> deps=new ArrayList<>();
@@ -121,7 +120,7 @@ public class Departamentos {
       return deps;
     }
 
-    public void BorrarDep(int no_dep) throws SQLException {
+    public void BorrarDep(int no_dep) throws SQLException {/*metodo para borrar departamentos*/
         
         String sql="Delete from departamentos where dept_no="+no_dep;
         sentencia=conexion.createStatement();
@@ -132,20 +131,7 @@ public class Departamentos {
         
     }
 
-    public Departamento ReadDep(int no_dep) throws SQLException {
-         Departamento dep=null;
-    
-        String sql="select * from departamentos where dept_no = "+no_dep;     
-    
-        sentencia =conexion.createStatement();
-        sentencia.execute(sql);
-        ResultSet rs= sentencia.getResultSet();
-        rs.close();
-    
-    return dep;
-    }
-
-    public Departamento ReadDepNombre(String dnombre) throws SQLException {
+    public Departamento ReadDepNombre(String dnombre) throws SQLException {/*metodo para buscar departamentos por nombre*/
          Departamento dep=new Departamento();
     
         String sql="select * from departamentos where dnombre = '"+dnombre+"'";     

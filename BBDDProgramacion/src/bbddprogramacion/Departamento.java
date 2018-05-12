@@ -11,21 +11,21 @@ import java.time.LocalDate;
  *
  * @author Sergio
  */
-public class Departamento {
+public class Departamento {/*clase departamento iniciar variables*/
     private int dept_no;
     private String dnombre;
     private String loc;
 
-    public Departamento(int dept_no, String dnombre, String loc) {
+    public Departamento(int dept_no, String dnombre, String loc) {/*constructor departamento*/
         this.dept_no = dept_no;
         this.dnombre = dnombre;
         this.loc = loc;
     }
 
-    public Departamento() {
+    public Departamento() {/*constructor vacio departamento*/
         
     }
-
+/*METODOS GET/ SET*/
     public int getDept_no() {
         return dept_no;
     }
@@ -49,4 +49,5 @@ public class Departamento {
     public void setLoc(String loc) {
         this.loc = loc;
     }
+/*FIN METODOS GET/ SET*/
 }

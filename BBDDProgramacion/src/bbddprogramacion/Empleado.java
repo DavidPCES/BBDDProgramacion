@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Usuario 1 DAM
  */
-public class Empleado {
+public class Empleado {/*variables de empleado*/
     
  protected int emp_no;
  protected String apellidos;
@@ -23,7 +23,7 @@ public class Empleado {
  protected int dept_no;
 
     public Empleado(int emp_no, String apellidos, String oficina, int dir, Date fecha_alt, double salario, double comision, int dept_no) {
-        this.emp_no = emp_no;
+        this.emp_no = emp_no;/*constructor empleado*/
         this.apellidos = apellidos;
         this.oficina = oficina;
         this.dir = dir;
@@ -33,9 +33,9 @@ public class Empleado {
         this.dept_no = dept_no;
     }
 
-    public Empleado() {
+    public Empleado() {/*constructor vacio de empleado*/
     }
-
+/*METODOS GET/ SET*/
     public int getEmp_no() {
         return emp_no;
     }
@@ -100,6 +100,5 @@ public class Empleado {
         this.dept_no = dept_no;
     }
     
- 
- 
+/*FIN METODOS SET/ GET*/
 }

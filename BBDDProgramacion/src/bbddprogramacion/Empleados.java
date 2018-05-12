@@ -20,13 +20,13 @@ import java.util.logging.Logger;
  *
  * @author Usuario 1 DAM
  */
-public class Empleados {
+public class Empleados {/*clase empleados*/
 
- private ArrayList<Empleado> empleados;
+ private ArrayList<Empleado> empleados;/*ArrayList de empleado, arrastra sus variables*/
  private Connection conexion;
  Statement sentencia=null;
 
-    public Empleados() {
+    public Empleados() {/*constructor empleados*/
        
          try {
             conexion = DriverManager.getConnection("jdbc:mysql://localhost/ejemplo", "ejemplo", "ejemplo");
@@ -37,7 +37,7 @@ public class Empleados {
          
        
     }
-    public int Create(Empleado emp)throws SQLException {
+    public int Create(Empleado emp)throws SQLException {/*metodo para crear empleados*/
                    
          int filas;
         String sql = "INSERT INTO empleados VALUES ( ?, ?, ? , ? , ? , ? , ? , ? )";
@@ -59,9 +59,9 @@ public class Empleados {
     
     
     
-     public String Update(int emp_no,Empleado emp) throws SQLException{
+     public String Update(int emp_no,Empleado emp) throws SQLException{/*metodo update del ejemplo inicial*/
          
-        String sql="UPDATE empleados set loc= 'Madrid' where apellido = 70";
+        String sql="UPDATE empleados set loc= 'Madrid' where dep_no = 70";
         
         sentencia =conexion.createStatement();
         sentencia.execute(sql);
@@ -72,7 +72,7 @@ public class Empleados {
         return sql;
     }
 
-    public Empleado Read(int emp_no) throws SQLException {
+    public Empleado Read(int emp_no) throws SQLException {/*metodo del ejemplo read(no se usa)*/
     Empleado emp=null;
     
         String sql="select * from empleados where emp_no = "+emp_no;     
@@ -85,7 +85,7 @@ public class Empleados {
     return emp;
     }
 
-    public void Delete(int dep_no) throws SQLException {
+    public void Delete(int dep_no) throws SQLException {/*metodo del ejemplo delete*/
         
          String sql="delete from departamentos where dept_no =70";     
     
@@ -95,10 +95,10 @@ public class Empleados {
      //   rs.close();
         
     }
-    public void Close() throws SQLException{
+    public void Close() throws SQLException{/*metodo cerrar la conexion*/
     conexion.close();}
 
-    public void BorrarEmp(int no_emp) throws SQLException {
+    public void BorrarEmp(int no_emp) throws SQLException {/*metodo borrar empleado*/
         String sql="delete from empleados where emp_no="+no_emp;
         sentencia=conexion.createStatement();
         sentencia.execute(sql);
@@ -108,7 +108,7 @@ public class Empleados {
 
     
 
-    public ArrayList<Empleado> ReadTodos() throws SQLException {
+    public ArrayList<Empleado> ReadTodos() throws SQLException {/*metodo para leer a todos los empleados*/
        Empleado emp=null;
       ArrayList<Empleado> bdemp=new ArrayList<>();
       String sql="Select * from empleados";
@@ -126,7 +126,7 @@ public class Empleados {
     }
     
    public Empleado BusquedaEmpleado(String apellidos_emp)throws SQLException{
-       
+       /*metodo buscar empleados por su apellido*/
        Empleado emp=null;
        String sql="Select * from empleados where apellido ='"+apellidos_emp+"'";
        
@@ -144,7 +144,7 @@ public class Empleados {
         
         return emp;
    }
-    public Empleado ReadEmp(int no_emp) throws SQLException {
+    public Empleado ReadEmp(int no_emp) throws SQLException {/*metodo para buscar empleados por su numero de empleado*/
         
         /*Departamento dep=null;
         String sql="select * from departamentos where dept_no="+no_dep;
@@ -175,5 +175,5 @@ public class Empleados {
         return emp;
        
     }
-
+    /*fin metodos*/
 }
