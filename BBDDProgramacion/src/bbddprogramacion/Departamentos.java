@@ -153,9 +153,18 @@ public class Departamentos {
         sentencia =conexion.createStatement();
         sentencia.execute(sql);
         ResultSet rs= sentencia.getResultSet();
+       
+        
+        while(rs.next())
+        {
+          dep=new Departamento(rs.getInt("dept_no"),rs.getString("dnombre"),rs.getString("loc"));
+        }
         rs.close();
+        sentencia.close();
+        
+        return dep;
     
-    return dep;
+   
     }
 
 }

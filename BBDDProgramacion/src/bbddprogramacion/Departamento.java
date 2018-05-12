@@ -50,5 +50,3 @@ public class Departamento {
         this.loc = loc;
     }
 }
-
-

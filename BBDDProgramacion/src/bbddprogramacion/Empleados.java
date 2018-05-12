@@ -124,7 +124,26 @@ public class Empleados {
       sentencia.close();
       return bdemp;
     }
-
+    
+   public Empleado BusquedaEmpleado(String apellidos_emp)throws SQLException{
+       
+       Empleado emp=null;
+       String sql="Select * from empleados where apellido ='"+apellidos_emp+"'";
+       
+        sentencia=conexion.createStatement();
+        sentencia.execute(sql);
+        ResultSet rs=sentencia.getResultSet();
+        
+        while(rs.next())
+        {
+          emp=new Empleado(rs.getInt("emp_no"),rs.getString("Apellido"),rs.getString("oficio"),rs.getInt("dir"),rs.getDate("fecha_alt"),
+            rs.getDouble("salario"),rs.getDouble("comision"),rs.getInt("dept_no"));
+        }
+        rs.close();
+        sentencia.close();
+        
+        return emp;
+   }
     public Empleado ReadEmp(int no_emp) throws SQLException {
         
         /*Departamento dep=null;
